@@ -98,8 +98,8 @@ public:
         else {
             Node<T> *temp = get(index - 1);
             Node<T> *newNode = temp->next;
-            temp->next = newNode;
-            delete temp;
+            temp->next = newNode->next;
+            delete newNode;
             length--;
         }
     }
@@ -122,8 +122,8 @@ public:
             newNode->next = temp->next;
             temp->next = newNode;
             length++;
+            return;
         }
-        return;
     }
 
    void reverselist(){
@@ -156,6 +156,7 @@ int main() {
     student *s1 = new student("A", 20);
     student *s2 = new student("B", 21);
     student *s3 = new student("C", 22);
+    student *s4 = new student("D", 23);
     LinkedList<student> *ll = new LinkedList<student>(s1);
     ll->add(s2);
     ll->addhead(s3);
@@ -163,7 +164,11 @@ int main() {
     ll->delfirst();
     ll->print();
     //ll->dellast();
-    ll->print();
+    //ll->print();
     ll->reverselist();
     ll->print();
+    ll->insert(2,s4);
+    ll->print();
+    //ll->deleteNode(2);
+    //ll->print();
 }
