@@ -162,7 +162,7 @@ int main() {
     ll->print();
     ll->delfirst();
     ll->print();
-    ll->dellast();
+    //ll->dellast();
     ll->print();
     ll->reverselist();
     ll->print();
