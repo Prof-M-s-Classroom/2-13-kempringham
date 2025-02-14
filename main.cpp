@@ -85,7 +85,23 @@ public:
 
     void deleteNode(int index) {
        //TODO:Write the function to delete at the given index. Reuse the pre-written functions for edge cases. Account for missing index.
-
+        if (index < 0 || index >= length) { // no need to delete an index of the LL that does not exist
+            cout << "Index is invalid" << endl;
+            return;
+        }
+        if (index == 0) { // index 0 is the first index of the LL, so delete first
+            delfirst();
+        }
+        if (index == length - 1) { // index length - 1 is the last index of the LL, so delete last
+            dellast();
+        }
+        else {
+            Node<T> *temp = get(index - 1);
+            Node<T> *newNode = temp->next;
+            temp->next = newNode;
+            delete temp;
+            length--;
+        }
     }
 
    void insert(int index, T *value) {
@@ -112,7 +128,13 @@ public:
 
    void reverselist(){
         //TODO:Write a function to reverse the list using the logic from the slide.
-
+        Node<T> prev = nullptr;
+        Node<T> *current = head;
+        while (current->next) {
+            prev = current;
+            current = current->next;
+        }
+        head = prev;
     }
 
     void print() {
@@ -136,5 +158,7 @@ int main() {
     ll->delfirst();
     ll->print();
     ll->dellast();
+    ll->print();
+    ll->deleteNode(1);
     ll->print();
 }
