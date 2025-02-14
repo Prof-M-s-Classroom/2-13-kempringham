@@ -34,6 +34,14 @@ public:
         this->length = 1;
         this->head = new Node<T>(value);
     }
+    ~LinkedList() {
+        Node<T> *current = this->head;
+        while (head) {
+            head = head->next;
+            delete current;
+            current = head;
+        }
+    }
     void add(T *value) {
         Node<T> *newNode = new Node<T>(value);
         Node<T> *temp = head;
@@ -42,6 +50,15 @@ public:
         }
         temp->next = newNode;
         length++;
+    }
+    Node<T>* get(int index) {
+        if (index < 0 || index>=length)
+            return nullptr;
+        Node<T>* temp=head;
+        for (int i = 0; i < index; i++) {
+            temp=temp->next;
+        }
+        return temp;
     }
 
     void addhead(T *value) {
